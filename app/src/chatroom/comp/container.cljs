@@ -1,12 +1,12 @@
 
-(ns workflow.comp.container
+(ns chatroom.comp.container
   (:require [hsl.core :refer [hsl]]
             [respo-ui.style :as ui]
             [respo-ui.style.colors :as colors]
             [respo.alias :refer [create-comp div span]]
             [respo.comp.debug :refer [comp-debug]]
             [respo.comp.text :refer [comp-code comp-text]]
-            [workflow.comp.home :refer [comp-home]]
+            [chatroom.comp.home :refer [comp-home]]
             [respo-message.comp.msg-list :refer [comp-msg-list]]))
 
 (def style-header

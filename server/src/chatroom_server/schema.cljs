@@ -1,5 +1,5 @@
 
-(ns workflow-server.schema )
+(ns chatroom-server.schema )
 
 (def message {:time nil, :id nil, :topic-id nil, :author-id nil, :text nil})
 

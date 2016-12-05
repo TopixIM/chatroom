@@ -21,11 +21,11 @@
 (def +version+ "0.1.0")
 
 (task-options!
-  pom {:project     'tiye/tiye-server
+  pom {:project     'topixim/chatroom
        :version     +version+
        :description "Cumulo workflow server"
-       :url         "https://github.com/tiye/tiye.me"
-       :scm         {:url "https://github.com/tiye/tiye.me"}
+       :url         "https://github.com/TopixIM/chatroom"
+       :scm         {:url "https://github.com/TopixIM/chatroom"}
        :license     {"MIT" "http://opensource.org/licenses/mit-license.php"}})
 
 (refer 'boot-figwheel :rename '{cljs-repl fw-cljs-repl}) ; avoid some symbols
@@ -35,12 +35,12 @@
     :source-paths ["src/"]
     :compiler {:output-to "app.js"
                :output-dir "server_out/"
-               :main 'workflow-server.main
+               :main 'chatroom-server.main
                :target :nodejs
                :optimizations :none
                :source-map true}
     :figwheel {:build-id  "dev"
-               :on-jsload 'workflow-server.main/on-jsload
+               :on-jsload 'chatroom-server.main/on-jsload
                :autoload true
                :debug false}}])
 
@@ -99,4 +99,4 @@
     :source-paths #{"src" "test"})
   (comp
     (watch)
-    (test :namespaces '#{workflow-server.test})))
+    (test :namespaces '#{chatroom-server.test})))

@@ -1,5 +1,5 @@
 
-(ns workflow.comp.room
+(ns chatroom.comp.room
   (:require [hsl.core :refer [hsl]]
             [clojure.string :as string]
             [respo-ui.style :as ui]

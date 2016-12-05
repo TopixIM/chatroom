@@ -1,13 +1,13 @@
 
-(ns workflow.comp.home
+(ns chatroom.comp.home
   (:require [respo.alias :refer [create-comp div a]]
             [respo.comp.text :refer [comp-text]]
             [respo.comp.space :refer [comp-space]]
             [respo-ui.style :as ui]
             [respo-ui.style.colors :as colors]
-            [workflow.comp.topics :refer [comp-topics]]
-            [workflow.comp.login :refer [comp-login]]
-            [workflow.comp.room :refer [comp-room]]))
+            [chatroom.comp.topics :refer [comp-topics]]
+            [chatroom.comp.login :refer [comp-login]]
+            [chatroom.comp.room :refer [comp-room]]))
 
 (defn on-log-out [e dispatch!] (dispatch! :user/log-out nil))
 

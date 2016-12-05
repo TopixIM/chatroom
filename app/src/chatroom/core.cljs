@@ -1,9 +1,9 @@
 
-(ns workflow.core
+(ns chatroom.core
   (:require [respo.core :refer [render! clear-cache!]]
-            [workflow.comp.container :refer [comp-container]]
+            [chatroom.comp.container :refer [comp-container]]
             [cljs.reader :refer [read-string]]
-            [workflow.network :refer [send! setup-socket!]]))
+            [chatroom.network :refer [send! setup-socket!]]))
 
 (defn dispatch! [op op-data] (send! op op-data))
 
@@ -23,7 +23,7 @@
   (setup-socket!
    store-ref
    {:on-close! (fn [event] (.error js/console "Lost connection!")),
-    :url "ws://tiye.me:5021"})
+    :url (str "ws://" (.-hostname js/location) ":5021")})
   (add-watch store-ref :changes render-app!)
   (add-watch states-ref :changes render-app!)
   (println "app started!"))

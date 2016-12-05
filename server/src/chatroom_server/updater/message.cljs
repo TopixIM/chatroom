@@ -1,5 +1,5 @@
 
-(ns workflow-server.updater.message )
+(ns chatroom-server.updater.message )
 
 (defn create [db op-data state-id op-id op-time]
   (let [[topic-id text] op-data]

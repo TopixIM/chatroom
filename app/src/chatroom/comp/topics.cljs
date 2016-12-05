@@ -1,11 +1,11 @@
 
-(ns workflow.comp.topics
+(ns chatroom.comp.topics
   (:require [respo.alias :refer [create-comp div span input button]]
             [respo.comp.text :refer [comp-text]]
             [respo.comp.space :refer [comp-space]]
             [respo-ui.style :as ui]
             [respo-ui.style.colors :as colors]
-            [workflow.comp.topic :refer [comp-topic]]))
+            [chatroom.comp.topic :refer [comp-topic]]))
 
 (defn on-input [mutate!] (fn [e dispatch!] (mutate! (:value e))))
 

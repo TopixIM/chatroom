@@ -1,8 +1,8 @@
 
-(ns workflow-server.twig.container
+(ns chatroom-server.twig.container
   (:require [recollect.bunch :refer [create-twig]]
-            [workflow-server.twig.user :refer [twig-user]]
-            [workflow-server.twig.topic :refer [twig-topic]]))
+            [chatroom-server.twig.user :refer [twig-user]]
+            [chatroom-server.twig.topic :refer [twig-topic]]))
 
 (def twig-container
   (create-twig

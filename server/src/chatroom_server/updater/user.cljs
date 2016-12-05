@@ -1,5 +1,5 @@
 
-(ns workflow-server.updater.user (:require [workflow-server.util :refer [find-first]]))
+(ns chatroom-server.updater.user (:require [chatroom-server.util :refer [find-first]]))
 
 (defn log-out [db op-data state-id op-id op-time]
   (assoc-in db [:states state-id :user-id] nil))

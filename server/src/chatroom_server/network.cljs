@@ -1,9 +1,9 @@
 
-(ns workflow-server.network
+(ns chatroom-server.network
   (:require [cljs.nodejs :as nodejs]
             [cljs.reader :as reader]
             [cljs.core.async :refer [chan >!]]
-            [workflow-server.twig.container :refer [twig-container]]
+            [chatroom-server.twig.container :refer [twig-container]]
             [recollect.diff :refer [diff-bunch]]
             [recollect.bunch :refer [render-bunch]])
   (:require-macros [cljs.core.async.macros :refer [go]]))

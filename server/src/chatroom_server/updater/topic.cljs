@@ -1,5 +1,5 @@
 
-(ns workflow-server.updater.topic )
+(ns chatroom-server.updater.topic )
 
 (defn add-one [db op-data state-id op-id op-time]
   (assoc-in

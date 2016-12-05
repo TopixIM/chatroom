@@ -1,5 +1,5 @@
 
-(ns workflow.comp.login
+(ns chatroom.comp.login
   (:require [respo.alias :refer [create-comp div input button]]
             [respo.comp.text :refer [comp-text]]
             [respo.comp.space :refer [comp-space]]

@@ -25,11 +25,11 @@
 (def +version+ "0.1.0")
 
 (task-options!
-  pom {:project     'cumulo/workflow
+  pom {:project     'topixim/workflow
        :version     +version+
        :description "Cumulo workflow"
-       :url         "https://github.com/Cumulo/cumulo-workflow"
-       :scm         {:url "https://github.com/Cumulo/cumulo-workflow"}
+       :url         "https://github.com/TopixIM/chatroom"
+       :scm         {:url "https://github.com/TopixIM/chatroom"}
        :license     {"MIT" "http://opensource.org/licenses/mit-license.php"}})
 
 (defn html-dsl [data fileset]
@@ -74,7 +74,7 @@
   (comp
     (editor!)
     (html-file :data {:build? false})
-    (reload :on-jsload 'workflow.core/on-jsload
+    (reload :on-jsload 'chatroom.core/on-jsload
             :cljs-asset-path ".")
     (cljs :compiler-options {:language-in :ecmascript5})
     (target :no-clean true)))
@@ -101,7 +101,7 @@
 
 (deftask rsync []
   (with-pre-wrap fileset
-    (sh "rsync" "-r" "target/" "tiye.me:repo/Cumulo/workflow" "--exclude" "main.out" "--delete")
+    (sh "rsync" "-r" "target/" "tiye.me:repo/TopixIM/chatroom" "--exclude" "main.out" "--delete")
     fileset))
 
 (deftask build []
@@ -124,4 +124,4 @@
     :source-paths #{"src" "test"})
   (comp
     (watch)
-    (test :namespaces '#{workflow.test})))
+    (test :namespaces '#{chatroom.test})))

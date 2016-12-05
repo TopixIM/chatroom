@@ -1,9 +1,9 @@
 
-(ns workflow-server.main
+(ns chatroom-server.main
   (:require [cljs.nodejs :as nodejs]
-            [workflow-server.schema :as schema]
-            [workflow-server.network :refer [run-server! render-clients!]]
-            [workflow-server.updater.core :refer [updater]]
+            [chatroom-server.schema :as schema]
+            [chatroom-server.network :refer [run-server! render-clients!]]
+            [chatroom-server.updater.core :refer [updater]]
             [cljs.core.async :refer [<!]])
   (:require-macros [cljs.core.async.macros :refer [go-loop]]))
 
