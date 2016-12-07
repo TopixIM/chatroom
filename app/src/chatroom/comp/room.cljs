@@ -20,7 +20,6 @@
 
 (defn on-keydown [mutate! topic-id text]
   (fn [e dispatch!]
-    (println e)
     (if (and (= (:key-code e) 13) (not (string/blank? text)))
       (do (dispatch! :message/create [topic-id text]) (mutate! "")))))
 
