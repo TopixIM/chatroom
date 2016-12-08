@@ -13,7 +13,7 @@
             [chatroom.comp.login :refer [comp-login]]
             [respo-message.comp.msg-list :refer [comp-msg-list]]))
 
-(def style-body {})
+(def style-body {:padding "16px 32px"})
 
 (defn render [store]
   (fn [state mutate!]
@@ -21,13 +21,15 @@
       (div
        {:style (merge ui/global ui/fullscreen ui/column)}
        (comp-header (:logged-in? store))
-       (if (:logged-in? store)
-         (case (:name router)
-           :home (comp-topics (:topics store) (:logged-in? store))
-           :topic (comp-room (:seeing-messages store) (:data router))
-           :profile (comp-profile store)
-           nil)
-         (comp-login))
+       (div
+        {:style style-body}
+        (if (:logged-in? store)
+          (case (:name router)
+            :home (comp-topics (:topics store) (:logged-in? store))
+            :topic (comp-room (:seeing-messages store) (:data router))
+            :profile (comp-profile store)
+            nil)
+          (comp-login)))
        (comp-debug router {:bottom 0, :max-width "100%", :left 0})
        (comp-msg-list (get-in store [:state :notifications]) :state/remove-notification)))))
 
