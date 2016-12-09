@@ -25,8 +25,8 @@
         {:style style-body}
         (if (:logged-in? store)
           (case (:name router)
-            :home (comp-topics (:topics store) (:logged-in? store))
-            :topic (comp-room (:seeing-messages store) (:data router))
+            :home (comp-topics (:data store) (:logged-in? store))
+            :topic (comp-room (:data store) (:data router))
             :profile (comp-profile store)
             nil)
           (comp-login)))

@@ -17,9 +17,12 @@
 
 (defn render [topic]
   (fn [state mutate!]
-    (div
-     {:style style-topic, :event {:click (on-topic (:id topic))}}
-     (comment comp-debug topic nil)
-     (comp-text (:title topic) nil))))
+    (let [author (:author topic)]
+      (div
+       {:style style-topic, :event {:click (on-topic (:id topic))}}
+       (comment comp-debug (:author topic) nil)
+       (comp-text (:name author) nil)
+       (comp-space 8 nil)
+       (comp-text (:title topic) nil)))))
 
 (def comp-topic (create-comp :topic render))

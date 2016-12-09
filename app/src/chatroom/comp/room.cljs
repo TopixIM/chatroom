@@ -7,7 +7,8 @@
             [respo.alias :refer [create-comp div span input button]]
             [respo.comp.debug :refer [comp-debug]]
             [respo.comp.text :refer [comp-code comp-text]]
-            [respo.comp.space :refer [comp-space]]))
+            [respo.comp.space :refer [comp-space]]
+            [chatroom.comp.message :refer [comp-message]]))
 
 (defn on-input [mutate!] (fn [e dispatch!] (mutate! (:value e))))
 
@@ -30,8 +31,7 @@
      (comp-text "Messages" nil)
      (div
       {:style ui/flex}
-      (->> (vals messages)
-           (map (fn [message] [(:id message) (div {} (comp-text (:text message) nil))]))))
+      (->> (vals messages) (map (fn [message] [(:id message) (comp-message message)]))))
      (div
       {:style ui/row}
       (input
