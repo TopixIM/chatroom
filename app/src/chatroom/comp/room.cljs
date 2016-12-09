@@ -14,6 +14,9 @@
 
 (defn update-state [state text] text)
 
+(def style-title
+  {:color colors/texture-light, :font-size 20, :font-weight 300, :font-family "Josefin Sans"})
+
 (defn on-send [mutate! topic-id text]
   (fn [e dispatch!] (dispatch! :message/create [topic-id text]) (mutate! "")))
 
@@ -24,11 +27,11 @@
     (if (and (= (:key-code e) 13) (not (string/blank? text)))
       (do (dispatch! :message/create [topic-id text]) (mutate! "")))))
 
-(defn render [messages topic-id]
+(defn render [messages topic-id title]
   (fn [state mutate!]
     (div
      {:style (merge ui/column ui/flex)}
-     (comp-text "Messages" nil)
+     (div {:style style-title} (comp-text title nil))
      (div
       {:style ui/flex}
       (->> (vals messages) (map (fn [message] [(:id message) (comp-message message)]))))

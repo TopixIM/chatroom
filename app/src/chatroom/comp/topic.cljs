@@ -7,11 +7,11 @@
             [respo-ui.style :as ui]
             [respo-ui.style.colors :as colors]))
 
-(defn on-topic [topic-id]
+(defn on-topic [topic-id topic-title]
   (fn [e dispatch!]
     (dispatch!
      :router/change
-     {:router nil, :name :topic, :title (str "Topic:" topic-id), :data topic-id})))
+     {:router nil, :name :topic, :title (str topic-title), :data topic-id})))
 
 (def style-topic {:font-size 16, :cursor :pointer})
 
@@ -19,7 +19,7 @@
   (fn [state mutate!]
     (let [author (:author topic)]
       (div
-       {:style style-topic, :event {:click (on-topic (:id topic))}}
+       {:style style-topic, :event {:click (on-topic (:id topic) (:title topic))}}
        (comment comp-debug (:author topic) nil)
        (comp-text (:name author) nil)
        (comp-space 8 nil)

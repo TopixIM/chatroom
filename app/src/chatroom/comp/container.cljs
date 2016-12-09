@@ -26,7 +26,7 @@
         (if (:logged-in? store)
           (case (:name router)
             :home (comp-topics (:data store) (:logged-in? store))
-            :topic (comp-room (:data store) (:data router))
+            :topic (comp-room (:data store) (:data router) (:title router))
             :profile (comp-profile store)
             nil)
           (comp-login)))

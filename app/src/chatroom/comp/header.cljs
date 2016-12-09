@@ -12,10 +12,12 @@
 
 (def style-header
   {:color :white,
-   :font-size 16,
+   :font-size 20,
+   :font-weight 300,
    :background-color colors/motif,
    :padding "0 16px",
    :justify-content :space-between,
+   :font-family "Josefin Sans",
    :height 48})
 
 (defn on-home [e dispatch!]
@@ -27,7 +29,7 @@
   (fn [state mutate!]
     (div
      {:style (merge ui/row-center style-header)}
-     (div {:style style-cursor, :event {:click on-home}} (comp-text "Messages" nil))
+     (div {:style style-cursor, :event {:click on-home}} (comp-text "Chat" nil))
      (div
       {:style style-cursor, :event {:click on-profile}}
       (comp-text (if logged-in? "Me" "Guest") nil)))))
