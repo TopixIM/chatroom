@@ -4,14 +4,26 @@
             [chatroom-server.schema :as schema]
             [chatroom-server.network :refer [run-server! render-clients!]]
             [chatroom-server.updater.core :refer [updater]]
-            [cljs.core.async :refer [<!]])
+            [cljs.core.async :refer [<!]]
+            [cljs.reader :refer [read-string]])
   (:require-macros [cljs.core.async.macros :refer [go-loop]]))
 
-(defonce writer-db-ref (atom schema/database))
+(def db-path "/tmp/cumulo-workflow.edn")
+
+(defn detect-db! [default-data]
+  (let [fs (js/require "fs")]
+    (if (.existsSync fs db-path)
+      (do (println "Read db from" db-path) (read-string (.readFileSync fs db-path "utf8")))
+      default-data)))
+
+(defonce writer-db-ref (atom (detect-db! schema/database)))
 
 (defonce reader-db-ref (atom @writer-db-ref))
 
-(defn on-jsload [] (println "code updated.") (render-clients! @reader-db-ref))
+(defn on-persist! []
+  (let [fs (js/require "fs"), raw (pr-str @writer-db-ref)]
+    (.writeFileSync fs db-path raw)
+    (println "Wrote db to" db-path)))
 
 (defn render-loop! []
   (if (not= @reader-db-ref @writer-db-ref)
@@ -36,6 +48,9 @@
        (recur)))
     (render-loop!))
   (add-watch reader-db-ref :log (fn [] ))
+  (.on js/process "exit" on-persist!)
   (println "server started"))
+
+(defn on-jsload! [] (println "code updated.") (render-clients! @reader-db-ref))
 
 (set! *main-cli-fn* -main)
