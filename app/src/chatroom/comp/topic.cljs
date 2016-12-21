@@ -1,6 +1,7 @@
 
 (ns chatroom.comp.topic
-  (:require [respo.alias :refer [create-comp div span input button]]
+  (:require [hsl.core :refer [hsl]]
+            [respo.alias :refer [create-comp div span input button]]
             [respo.comp.text :refer [comp-text]]
             [respo.comp.space :refer [comp-space]]
             [respo.comp.debug :refer [comp-debug]]
@@ -15,13 +16,21 @@
 
 (def style-topic {:font-size 16, :cursor :pointer})
 
+(def style-name
+  {:line-height "16px",
+   :color :white,
+   :font-size 12,
+   :background-color (hsl 260 60 88),
+   :padding "0 8px",
+   :display :inline-block})
+
 (defn render [topic]
   (fn [state mutate!]
     (let [author (:author topic)]
       (div
        {:style style-topic, :event {:click (on-topic (:id topic) (:title topic))}}
        (comment comp-debug (:author topic) nil)
-       (comp-text (:name author) nil)
+       (div {:style style-name, :attrs {:inner-text (:name author)}})
        (comp-space 8 nil)
        (comp-text (:title topic) nil)))))
 
